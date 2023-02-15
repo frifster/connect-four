@@ -44,6 +44,10 @@ export class Game {
   }
 
   validColumn(columnNumber) {
+    if (isNaN(columnNumber)) {
+      return false
+    }
+
     if (!(columnNumber < 0 || columnNumber > BOARD_COLUMNS)) {
       if (this.board[columnNumber].includes(null)) {
         return true

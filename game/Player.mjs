@@ -7,7 +7,6 @@ export class Player {
     }
 
     chooseRandomColumn(validColumns) {
-        console.log("chooseRandomColumn", validColumns)
         const randomIndex = Math.floor(Math.random() * validColumns.length)
 
         return validColumns[randomIndex]
