@@ -8,6 +8,7 @@ import { GAME_TIE } from "./constants/messages.mjs";
 import { Player } from "./game/Player.mjs";
 import { FIRST_PLAYER, HUMAN, SECOND_PLAYER } from "./constants/gameConstants.mjs";
 import { delay } from "./helpers/delay.js";
+import { errorLog, prettyLog } from "./helpers/prettyLog.js";
 
 const commandLine = readLine.createInterface({
     input: process.stdin,
@@ -53,7 +54,7 @@ while (!gameMode) {
         break
     }
 
-    console.log(chalk.red(INVALID_GAME_MODE))
+    errorLog(INVALID_GAME_MODE)
 }
 
 const game = new Game(players);
@@ -62,31 +63,37 @@ let winner = game.winner;
 
 while (!winner) {
 
-    console.log(`Player ${game.getCurrentPlayer()}'s TURN: `)
+    prettyLog(`Player ${game.getCurrentPlayer()}'s TURN: `)
 
     let column = ''
     const validColumns = game.getValidColumns();
 
     console.log(`The available columns to drop token to : ${validColumns} \n`)
 
+    let isColumnValid = false;
+
     if (game.currentPlayer.playerType === HUMAN) {
         column = parseInt(await commandLine.question(CHOOSE_COLUMN)) - 1;
-    } else {
-        console.log(`Com Player is choosing a column...`)
-        await delay(200)
 
+        console.log("column", column)
+
+        isColumnValid = game.validColumn(column)
+
+    } else {
         column = game.currentPlayer.chooseRandomColumn(game.validColumns)
 
-        await delay(500)
+        isColumnValid = game.validColumn(column)
+
         // Adding 1 for human readable index
-        console.log(`Com Player chose column number ${column + 1}`)
+        prettyLog(`Computer Player chose column number ${column + 1}`)
+        console.log('\n')
+
+        await delay(500)
+
     }
 
-
-    const isColumnValid = game.validColumn(column)
-
     if (!isColumnValid) {
-        console.log("Please enter a valid column!")
+        errorLog("Please enter a valid column!")
         continue
     }
 
