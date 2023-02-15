@@ -217,6 +217,190 @@ describe("Game Module", () => {
       expect(game.winner).toEqual(player2.toString());
     })
 
+    it('Should return true for horizontal win 1st row', () => {
+      game.setBoard([
+        [null, null, null, null, "O", "X"],
+        [null, "O", "X", "O", "X", "X"],
+        [null, null, null, "X", "X", "X"],
+        [null, null, "O", "O", "O", "X"],
+        [null, null, null, null, "X", "O"],
+        [null, null, "X", "X", "O", "O"],
+        [null, null, null, null, "X", "O"],
+      ])
+      expect(game.checkWin()).toBeTruthy();
+    })
+
+    it('Should return true for horizontal win 2nd row', () => {
+      game.setBoard([
+        [null, null, null, null, "X", "O"],
+        [null, "O", "X", "O", "X", "X"],
+        [null, null, null, "X", "X", "X"],
+        [null, null, "O", "O", "X", "X"],
+        [null, null, null, null, "X", "O"],
+        [null, null, "X", "X", "O", "O"],
+        [null, null, null, null, "X", "O"],
+      ])
+      expect(game.checkWin()).toBeTruthy();
+    })
+
+    it('Should return true for horizontal win 3rd row', () => {
+      game.setBoard([
+        [null, null, null, "X", "X", "O"],
+        [null, "O", "X", "X", "X", "O"],
+        [null, null, null, "X", "O", "X"],
+        [null, null, "O", "X", "X", "X"],
+        [null, null, null, null, "X", "O"],
+        [null, null, "X", "X", "O", "O"],
+        [null, null, null, null, "X", "O"],
+      ])
+      expect(game.checkWin()).toBeTruthy();
+    })
+
+    it('Should return true for horizontal win 4th row', () => {
+      game.setBoard([
+        [null, null, "X", "O", "X", "O"],
+        [null, "O", "X", "X", "X", "O"],
+        [null, null, "X", "X", "O", "X"],
+        [null, null, "X", "O", "X", "X"],
+        [null, null, null, null, "X", "O"],
+        [null, null, "X", "X", "O", "O"],
+        [null, null, null, null, "X", "O"],
+      ])
+      expect(game.checkWin()).toBeTruthy();
+    })
+
+    it('Should return true for horizontal win 5th row', () => {
+      game.setBoard([
+        [null, "O", "X", "O", "X", "O"],
+        [null, "O", "O", "X", "X", "O"],
+        [null, "O", "X", "X", "O", "X"],
+        [null, "O", "X", "O", "X", "X"],
+        [null, null, null, null, "X", "O"],
+        [null, null, "X", "X", "O", "O"],
+        [null, null, null, null, "X", "O"],
+      ])
+      expect(game.checkWin()).toBeTruthy();
+    })
+
+    it('Should return true for horizontal win 6th row', () => {
+      game.setBoard([
+        ["X", "O", "X", "O", "X", "O"],
+        ["X", "X", "O", "X", "X", "O"],
+        ["X", "O", "X", "X", "O", "X"],
+        ["X", "O", "X", "O", "X", "X"],
+        [null, null, null, null, "X", "O"],
+        [null, null, "X", "X", "O", "O"],
+        [null, null, null, null, "X", "O"],
+      ])
+      expect(game.checkWin()).toBeTruthy();
+    })
+
+    it('Should return true for vertical win 1st col', () => {
+      game.setBoard([
+        [null, null, "O", "O", "O", "O"],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, "X", "X", "X"],
+        [null, null, null, null, null, null],
+        [null, null, null, null, "X", "O"],
+        [null, null, null, null, "X", "O"],
+      ])
+      expect(game.checkWin()).toBeTruthy();
+    })
+
+    it('Should return true for vertical win 2nd col', () => {
+      game.setBoard([
+        [null, null, null, null, null, null],
+        [null, null, "O", "O", "O", "O"],
+        [null, null, null, null, null, null],
+        [null, null, null, "X", "X", "X"],
+        [null, null, null, null, null, null],
+        [null, null, null, null, "X", "O"],
+        [null, null, null, null, "X", "O"],
+      ])
+      expect(game.checkWin()).toBeTruthy();
+    })
+
+    it('Should return true for vertical win 3rd col', () => {
+      game.setBoard([
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, "O", "O", "O", "O"],
+        [null, null, null, "X", "X", "X"],
+        [null, null, null, null, null, null],
+        [null, null, null, null, "X", "O"],
+        [null, null, null, null, "X", "O"],
+      ])
+      expect(game.checkWin()).toBeTruthy();
+    })
+
+    it('Should return true for vertical win 4th col', () => {
+      game.setBoard([
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, "X", "X", "X"],
+        [null, null, "O", "O", "O", "O"],
+        [null, null, null, null, null, null],
+        [null, null, null, null, "X", "O"],
+        [null, null, null, null, "X", "O"],
+
+      ])
+      expect(game.checkWin()).toBeTruthy();
+    })
+
+    it('Should return true for vertical win 5th col', () => {
+      game.setBoard([
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, "X", "X", "X"],
+        [null, null, null, null, null, null],
+        [null, null, "O", "O", "O", "O"],
+        [null, null, null, null, "X", "O"],
+        [null, null, null, null, "X", "O"],
+      ])
+      expect(game.checkWin()).toBeTruthy();
+    })
+    it('Should return true for vertical win 6th col', () => {
+      game.setBoard([
+        [null, null, null, null, null, null],
+        [null, null, "O", "O", "O", "O"],
+        [null, null, null, null, null, null],
+        [null, null, null, "X", "X", "X"],
+        [null, null, null, null, null, null],
+        [null, null, null, null, "X", "O"],
+        [null, null, "O", "O", "O", "O"],
+        [null, null, null, null, "X", "O"],
+      ])
+      expect(game.checkWin()).toBeTruthy();
+    })
+    it('Should return true for vertical win 7th col', () => {
+      game.setBoard([
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, "X", "X", "X"],
+        [null, null, null, null, null, null],
+        [null, null, null, null, "X", "O"],
+        [null, null, null, null, "X", "O"],
+        [null, null, "O", "O", "O", "O"],
+
+      ])
+      expect(game.checkWin()).toBeTruthy();
+    })
+
+
+    it('Should return true for diagonal win', () => {
+      game.setBoard([
+        [null, "X", "X", "X", "O", "O"],
+        [null, "O", "X", "O", "X", "X"],
+        ["O", "O", "O", "X", "X", "O"],
+        [null, null, null, "O", "O", "O"],
+        [null, null, null, null, "O", "X"],
+        [null, "X", "O", "X", "X", "X"],
+        ["O", "X", "O", "X", "O", "X"],
+
+      ])
+      expect(game.checkWin()).toBeTruthy();
+    })
   })
 
 

@@ -101,64 +101,22 @@ export class Game {
 
 
   checkWin() {
-    if (this.checkForHorizontaLWin()) {
-      return true
-    }
-
-    if (this.checkForVerticalWin()) {
-      return true
-    }
-
-
-
-    // // Checking for diagonal win (top-left to bottom-right)
-    // for (let row = 0; row < BOARD_ROWS - 3; row++) {
-    //   for (let col = 0; col < BOARD_COLUMNS - 3; col++) {
-    //     const currentCell = this.board[row][col];
-
-    //     if (currentCell &&
-    //       currentCell === this.board[row + 1][col + 1] &&
-    //       currentCell === this.board[row + 2][col + 2] &&
-    //       currentCell === this.board[row + 3][col + 3]) {
-    //       console.log("WIN BY DIAGONAL 1ST", currentCell, { col, row })
-
-    //       this.winner = currentCell
-    //       return true;
-    //     }
-    //   }
-    // }
-
-    // // Checking for diagonal win (bottom-left to top-right)
-    // for (let row = 3; row < BOARD_ROWS; row++) {
-    //   for (let col = 0; col < BOARD_COLUMNS - 3; col++) {
-    //     const currentCell = this.board[row][col];
-
-    //     if (currentCell &&
-    //       currentCell === this.board[row - 1][col + 1] &&
-    //       currentCell === this.board[row - 2][col + 2] &&
-    //       currentCell === this.board[row - 3][col + 3]) {
-    //       console.log("WIN BY DIAGONAL 2nd", currentCell, { col, row })
-
-    //       this.winner = currentCell
-    //       return true;
-    //     }
-    //   }
-    // }
-
-    return false;
+    return (
+      this.checkForHorizontaLWin() |
+      this.checkForVerticalWin() |
+      this.checkForDiagonalWin()
+    )
   }
 
   checkForHorizontaLWin() {
     for (let col = 0; col < BOARD_COLUMNS - 3; col++) {
-      for (let row = BOARD_ROWS - 1; row > 0; row--) {
+      for (let row = BOARD_ROWS - 1; row >= 0; row--) {
         const currentCell = this.board[col][row]
 
         if (currentCell) {
           if (currentCell === this.board[col + 1][row] &&
             currentCell === this.board[col + 2][row] &&
             currentCell === this.board[col + 3][row]) {
-
-            console.log("WIN BY HORIZONTAL RULE", currentCell, { col, row })
             this.winner = currentCell
             return true
 
@@ -168,26 +126,57 @@ export class Game {
 
       }
     }
+
+    return false
+
   }
 
   checkForVerticalWin() {
     for (let col = 0; col < BOARD_COLUMNS; col++) {
-      for (let row = BOARD_ROWS; row > 0; row--) {
+      for (let row = BOARD_ROWS - 1; row > BOARD_ROWS - 4; row--) {
         const currentCell = this.board[col][row]
-
         if (currentCell) {
           if (currentCell === this.board[col][row - 1] &&
             currentCell === this.board[col][row - 2] &&
-            currentCell === this.board[col][row]) {
-
-            console.log("WIN BY Vertical rULE", currentCell, { col, row })
+            currentCell === this.board[col][row - 3]) {
             this.winner = currentCell
             return true
-
           }
-
         }
+      }
+    }
 
+    return false
+  }
+
+  checkForDiagonalWin() {
+    // Checking for diagonal win (top-left to bottom-right)
+    for (let row = 0; row < BOARD_ROWS - 3; row++) {
+      for (let col = 0; col < BOARD_COLUMNS - 3; col++) {
+        const currentCell = this.board[row][col];
+
+        if (currentCell &&
+          currentCell === this.board[row + 1][col + 1] &&
+          currentCell === this.board[row + 2][col + 2] &&
+          currentCell === this.board[row + 3][col + 3]) {
+          this.winner = currentCell
+          return true;
+        }
+      }
+    }
+
+    // Checking for diagonal win (bottom-left to top-right)
+    for (let row = 3; row < BOARD_ROWS; row++) {
+      for (let col = 0; col < BOARD_COLUMNS - 3; col++) {
+        const currentCell = this.board[row][col];
+
+        if (currentCell &&
+          currentCell === this.board[row - 1][col + 1] &&
+          currentCell === this.board[row - 2][col + 2] &&
+          currentCell === this.board[row - 3][col + 3]) {
+          this.winner = currentCell
+          return true;
+        }
       }
     }
   }
