@@ -85,7 +85,7 @@ while (!winner) {
         prettyLog(`Computer Player chose column number ${column + 1}`)
         console.log('\n')
 
-        // await delay(500)
+        await delay(500)
 
     }
 
