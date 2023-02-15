@@ -1,9 +1,4 @@
 # Connect-Four
-A fun coding challenge from one of my clients
-
-- ✅ = DONE
-- 👷 = In progress
-
 REQUIREMENTS
 1. An interactive text console game ✅
 2. Written in JavaScript or Ruby ✅
@@ -25,3 +20,30 @@ strategies, or have two human players, or two computer players ✅
  
 ## Badges  
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)  
+
+
+ 
+## Tech Stack  
+Node JS, Vanilla JavaScript, Jest   
+
+
+## Usage
+
+1. Install Dependencies
+```
+yarn install
+```
+
+2. Start the game
+```
+yarn start
+```
+
+
+## Tests
+
+Run Jest Test scripts
+
+```
+yarn test
+```
