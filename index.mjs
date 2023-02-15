@@ -73,11 +73,11 @@ while (!winner) {
         column = parseInt(await commandLine.question(CHOOSE_COLUMN)) - 1;
     } else {
         console.log(`Com Player is choosing a column...`)
-        await delay(1000)
+        await delay(200)
 
         column = game.currentPlayer.chooseRandomColumn(game.validColumns)
 
-        await delay(1000)
+        await delay(500)
         // Adding 1 for human readable index
         console.log(`Com Player chose column number ${column + 1}`)
     }

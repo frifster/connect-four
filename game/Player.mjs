@@ -12,6 +12,10 @@ export class Player {
         return validColumns[randomIndex]
     }
 
+    intelligentChooseOfRandomColumn(validColumns) {
+        // TODO: ADD Strategy so that com player can choose intelligently
+    }
+
     toString() {
         return this.playerToken
     }

@@ -1,4 +1,4 @@
-import { BOARD_ROWS, BOARD_COLUMNS, FIRST_PLAYER, SECOND_PLAYER } from "../constants/gameConstants.mjs";
+import { BOARD_ROWS, BOARD_COLUMNS } from "../constants/gameConstants.mjs";
 import { GAME_OVER_WITH_WINNER, INVALID_COLUMN } from "../constants/messages.mjs";
 
 export class Game {
@@ -33,8 +33,6 @@ export class Game {
 
     for (let i = BOARD_COLUMNS; i >= 0; i--) {
       if (this.board[columnNumber][i] === null) {
-
-        console.log("this.currentPlayer", this.currentPlayer)
         this.board[columnNumber][i] = this.currentPlayer.playerToken
         break;
       }
@@ -82,7 +80,18 @@ export class Game {
   }
 
   showBoard() {
-    return console.log(this.board)
+    for (let row = 0; row < this.board[0].length; row++) {
+      let rowStr = '|';
+
+      for (let col = 0; col < this.board.length; col++) {
+        const cell = this.board[col][row];
+        rowStr += cell ? ` ${cell} |` : '   |';
+      }
+
+      console.log(rowStr);
+    }
+
+    console.log('-----------------------------');
   }
 
 
