@@ -2,19 +2,23 @@ import { BOARD_ROWS, BOARD_COLUMNS, FIRST_PLAYER, SECOND_PLAYER } from "../const
 import { GAME_OVER_WITH_WINNER, INVALID_COLUMN } from "../constants/messages.mjs";
 
 export class Game {
-  constructor() {
+  constructor(players) {
     this.board = Array.from({ length: BOARD_COLUMNS }, () => Array.from({ length: BOARD_ROWS }, () => null))
-    this.currentPlayer = FIRST_PLAYER
-    this.winner = null
-    this.boardFull = false
+    this.players = players;
+    this.currentPlayer = players[0];
+    this.winner = null;
+    this.boardFull = false;
+    this.validColumns = [0, 1, 2, 3, 4, 5, 6]
   }
 
   getCurrentPlayer() {
-    return this.currentPlayer;
+    return `${this.currentPlayer}`;
   }
 
   switchPlayer() {
-    this.currentPlayer = this.currentPlayer === FIRST_PLAYER ? SECOND_PLAYER : FIRST_PLAYER
+    this.currentPlayer = this.currentPlayer === this.players[0] ? this.players[1] : this.players[0]
+
+    return this
   }
 
 
@@ -29,10 +33,14 @@ export class Game {
 
     for (let i = BOARD_COLUMNS; i >= 0; i--) {
       if (this.board[columnNumber][i] === null) {
-        this.board[columnNumber][i] = this.currentPlayer
+
+        console.log("this.currentPlayer", this.currentPlayer)
+        this.board[columnNumber][i] = this.currentPlayer.playerToken
         break;
       }
     }
+
+    return this
   }
 
   validColumn(columnNumber) {
@@ -45,6 +53,20 @@ export class Game {
     return false
   }
 
+  getValidColumns() {
+    const validColumns = []
+    for (let i = 0; i <= BOARD_COLUMNS - 1; i++) {
+      if (this.board[i].includes(null)) {
+        validColumns.push(i)
+      }
+    }
+
+    this.validColumns = validColumns
+
+    // Adding 1 for human readable index
+    return validColumns.map(x => x + 1).join(" | ")
+  }
+
   isBoardFull() {
     for (let column of this.board) {
       if (column.includes(null)) {
@@ -54,6 +76,11 @@ export class Game {
 
     return true
   }
+
+  showBoard() {
+    return console.log(this.board)
+  }
+
 
   checkWin() {
     // Checking for horizontal win
@@ -65,6 +92,8 @@ export class Game {
           currentCell === this.board[row][col + 1] &&
           currentCell === this.board[row][col + 2] &&
           currentCell === this.board[row][col + 3]) {
+
+          this.winner = currentCell
           return true;
         }
       }
@@ -79,6 +108,7 @@ export class Game {
           currentCell === this.board[row + 1][col] &&
           currentCell === this.board[row + 2][col] &&
           currentCell === this.board[row + 3][col]) {
+          this.winner = currentCell
           return true;
         }
       }
@@ -93,6 +123,7 @@ export class Game {
           currentCell === this.board[row + 1][col + 1] &&
           currentCell === this.board[row + 2][col + 2] &&
           currentCell === this.board[row + 3][col + 3]) {
+          this.winner = currentCell
           return true;
         }
       }
@@ -107,6 +138,7 @@ export class Game {
           currentCell === this.board[row - 1][col + 1] &&
           currentCell === this.board[row - 2][col + 2] &&
           currentCell === this.board[row - 3][col + 3]) {
+          this.winner = currentCell
           return true;
         }
       }
