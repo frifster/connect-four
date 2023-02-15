@@ -22,12 +22,16 @@ export class Game {
       throw new Error(GAME_OVER_WITH_WINNER);
     }
 
-    if (columnNumber < 0 || columnNumber > BOARD_COLUMNS) {
+    if (!this.validColumn(columnNumber)) {
       throw new Error(INVALID_COLUMN);
     }
 
     console.log('board', this.board)
 
+  }
+
+  validColumn(columnNumber) {
+    return !(columnNumber < 0 || columnNumber > BOARD_COLUMNS)
   }
 
   isBoardFull() {
