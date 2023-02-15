@@ -4,9 +4,16 @@
   "packageManager": "yarn@3.4.1",
   "author": "Eugene Avila (https://eugenerationx.com)",
   "scripts": {
-    "start": "node --experimental-modules index.mjs"
+    "start": "node --experimental-modules index.mjs",
+    "test": "yarn node --experimental-vm-modules $(yarn bin jest)"
   },
   "license": "MIT",
   "bin": "./bin/index.mjs",
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "jest": "^29.4.2"
+  },
+  "jest": {
+    "transform": {}
+  }
 }
