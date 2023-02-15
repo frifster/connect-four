@@ -28,33 +28,11 @@ export class Game {
     }
 
     for (let i = BOARD_COLUMNS; i >= 0; i--) {
-      console.log("iiiiiiii", i)
       if (this.board[columnNumber][i] === null) {
         this.board[columnNumber][i] = this.currentPlayer
         break;
       }
     }
-
-
-    const hasWinner = this.checkWin()
-
-    console.log("hasWinner", hasWinner)
-
-    if (hasWinner) {
-      this.winner = this.currentPlayer
-    } else {
-
-      const isBoardFull = this.isBoardFull()
-
-      if (isBoardFull) {
-        console.log("BOARD FULL")
-        this.boardFull = true
-        return
-      }
-      this.switchPlayer()
-    }
-
-
   }
 
   validColumn(columnNumber) {
@@ -78,44 +56,62 @@ export class Game {
   }
 
   checkWin() {
-    const winningPositions = [
-      // Vertical
-      [0, 0, 0, 0],
-      [1, 1, 1, 1],
-      [2, 2, 2, 2],
-      [3, 3, 3, 3],
-      [4, 4, 4, 4],
-      [5, 5, 5, 5],
+    // Checking for horizontal win
+    for (let row = 0; row < BOARD_ROWS; row++) {
+      for (let col = 0; col < BOARD_COLUMNS - 3; col++) {
+        const currentCell = this.board[row][col];
 
-      // Horizontal
-      [0, 1, 2, 3],
-      [1, 2, 3, 4],
-      [2, 3, 4, 5],
+        if (currentCell &&
+          currentCell === this.board[row][col + 1] &&
+          currentCell === this.board[row][col + 2] &&
+          currentCell === this.board[row][col + 3]) {
+          return true;
+        }
+      }
+    }
 
-      // Diagonal
-      [0, 1, 2, 3],
-      [1, 2, 3, 4],
-      [2, 3, 4, 5],
-      [3, 4, 5, 6],
-      [0, 1, 2, 3],
-      [1, 2, 3, 4],
-      [2, 3, 4, 5],
-    ]
+    // Checking for vertical win
+    for (let row = 0; row < BOARD_ROWS - 3; row++) {
+      for (let col = 0; col < BOARD_COLUMNS; col++) {
+        const currentCell = this.board[row][col];
 
-    // for (let position of winningPositions) {
-    //   const [a, b, c, d] = position
+        if (currentCell &&
+          currentCell === this.board[row + 1][col] &&
+          currentCell === this.board[row + 2][col] &&
+          currentCell === this.board[row + 3][col]) {
+          return true;
+        }
+      }
+    }
 
-    //   console.log("position", position)
+    // Checking for diagonal win (top-left to bottom-right)
+    for (let row = 0; row < BOARD_ROWS - 3; row++) {
+      for (let col = 0; col < BOARD_COLUMNS - 3; col++) {
+        const currentCell = this.board[row][col];
 
+        if (currentCell &&
+          currentCell === this.board[row + 1][col + 1] &&
+          currentCell === this.board[row + 2][col + 2] &&
+          currentCell === this.board[row + 3][col + 3]) {
+          return true;
+        }
+      }
+    }
 
-    //   if (this.board[a][b]) {
-    //     if (this.board[a][b] === this.board[c][d] && this.board[b][c] === this.board[d][a]) {
-    //       return true
-    //     }
-    //   }
-    // }
+    // Checking for diagonal win (bottom-left to top-right)
+    for (let row = 3; row < BOARD_ROWS; row++) {
+      for (let col = 0; col < BOARD_COLUMNS - 3; col++) {
+        const currentCell = this.board[row][col];
 
-    return false
+        if (currentCell &&
+          currentCell === this.board[row - 1][col + 1] &&
+          currentCell === this.board[row - 2][col + 2] &&
+          currentCell === this.board[row - 3][col + 3]) {
+          return true;
+        }
+      }
+    }
 
+    return false;
   }
 }

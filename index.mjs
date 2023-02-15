@@ -1,25 +1,18 @@
 #!/usr/bin/env node
 // libraries
-// import yargs from "yargs";
-// import { hideBin } from "yargs/helpers"
 import readLine from "readline/promises"
 // custom libs
 import { Game } from "./game/Game.mjs";
 import { CHOOSE_COLUMN, WANNA_PLAY_FIRST } from "./constants/cmdQuestions.mjs";
 import { GAME_TIME } from "./constants/messages.mjs";
 
-// const argvs = yargs(hideBin(process.argv)).argv
-
 const commandLine = readLine.createInterface({
     input: process.stdin,
     output: process.stdout,
 });
 
-
+// TODO: Assign player to X or O
 const answer = await commandLine.question(WANNA_PLAY_FIRST)
-console.log({ answer })
-
-// console.log('CONNECT FOUR', argvs)
 
 
 const game = new Game();
@@ -41,18 +34,27 @@ while (!winner && !boardFull) {
 
     game.dropToken(column);
 
-    console.log("game.board", game.board)
-
-    boardFull = game.boardFull
-    winner = game.winner
+    // TODO: Show the current board
 
 
-    console.log({ winner, boardFull })
+    if (game.isBoardFull()) {
+        break
+    }
+
+    if (game.checkWin()) {
+        break
+    }
+
+    game.switchPlayer()
 }
 
 if (!winner && boardFull) {
     console.log(GAME_TIME)
+    commandLine.close()
+}
 
+if (winner) {
+    console.log(`The winner is player: ${winner}.`)
     commandLine.close()
 }
 
