@@ -1,0 +1,10 @@
+{
+  "name": "connect-four",
+  "main": "index.js",
+  "packageManager": "yarn@3.4.1",
+  "author": "Eugene Avila (https://eugenerationx.com)",
+  "license": "MIT",
+  "bin": {
+    "connect-four": "./bin/index.js"
+  }
+}
