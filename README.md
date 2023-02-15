@@ -1,4 +1,4 @@
-# connect-four
+# Connect-Four
 A fun coding challenge from one of my clients
 
 REQUIREMENTS
