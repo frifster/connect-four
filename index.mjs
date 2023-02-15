@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // libraries
-import readLine from "readline/promises"
+import readLine from "readline/promises";
 // custom libs
 import { Game } from "./game/Game.mjs";
 import { CHOOSE_COLUMN, CHOOSE_GAME_MODE, INVALID_GAME_MODE } from "./constants/cmdQuestions.mjs";
@@ -53,7 +53,7 @@ while (!gameMode) {
         break
     }
 
-    console.log(INVALID_GAME_MODE)
+    console.log(chalk.red(INVALID_GAME_MODE))
 }
 
 const game = new Game(players);

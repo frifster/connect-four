@@ -28,26 +28,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
-            ["chalk", "npm:5.2.0"]\
           ],\
           "linkType": "SOFT"\
-        }]\
-      ]],\
-      ["chalk", [\
-        ["npm:5.2.0", {\
-          "packageLocation": "./.yarn/cache/chalk-npm-5.2.0-bedd808592-03d8060277.zip/node_modules/chalk/",\
-          "packageDependencies": [\
-            ["chalk", "npm:5.2.0"]\
-          ],\
-          "linkType": "HARD"\
         }]\
       ]],\
       ["connect-four", [\
         ["workspace:.", {\
           "packageLocation": "./",\
           "packageDependencies": [\
-            ["connect-four", "workspace:."],\
-            ["chalk", "npm:5.2.0"]\
+            ["connect-four", "workspace:."]\
           ],\
           "linkType": "SOFT"\
         }]\

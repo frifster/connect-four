@@ -3,20 +3,10 @@
 
 __metadata:
   version: 6
-  cacheKey: 8
-
-"chalk@npm:^5.2.0":
-  version: 5.2.0
-  resolution: "chalk@npm:5.2.0"
-  checksum: 03d8060277de6cf2fd567dc25fcf770593eb5bb85f460ce443e49255a30ff1242edd0c90a06a03803b0466ff0687a939b41db1757bec987113e83de89a003caa
-  languageName: node
-  linkType: hard
 
 "connect-four@workspace:.":
   version: 0.0.0-use.local
   resolution: "connect-four@workspace:."
-  dependencies:
-    chalk: ^5.2.0
   bin:
     connect-four: ./bin/index.mjs
   languageName: unknown
