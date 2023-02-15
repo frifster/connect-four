@@ -17,7 +17,7 @@ export class Player {
     }
 
     toString() {
-        return this.playerToken
+        return `${this.playerToken}`
     }
 
     valueOf() {

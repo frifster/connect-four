@@ -5,7 +5,7 @@
   "author": "Eugene Avila (https://eugenerationx.com)",
   "scripts": {
     "start": "node --experimental-modules index.mjs",
-    "test": "yarn node --experimental-vm-modules $(yarn bin jest)"
+    "test": "yarn node --experimental-vm-modules $(yarn bin jest) --coverage"
   },
   "license": "MIT",
   "bin": "./bin/index.mjs",

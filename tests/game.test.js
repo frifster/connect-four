@@ -160,6 +160,26 @@ describe("Game Module", () => {
 
   })
 
+  describe('getValidColumns', () => {
+    it('Should be able to give all the human readable column numbers if board is empty', () => {
+      expect(game.getValidColumns()).toEqual('1 | 2 | 3 | 4 | 5 | 6 | 7')
+    })
+
+    it('Should be able to give only the valid human readable column numbers if board is not empty', () => {
+      game.setBoard([
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, "O"],
+        ["X", "X", "O", "O", "X", "X"],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null]
+      ])
+
+      expect(game.getValidColumns()).toEqual('1 | 2 | 3 | 5 | 6 | 7')
+    })
+  })
+
   describe('isBoardFull', () => {
     it('returns false if board is not full', () => {
       const board = [

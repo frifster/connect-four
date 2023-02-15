@@ -28,10 +28,6 @@ export class Game {
 
 
   dropToken(columnNumber) {
-    if (this.winner) {
-      throw new Error(GAME_OVER_WITH_WINNER);
-    }
-
     if (!this.validColumn(columnNumber)) {
       throw new Error(INVALID_COLUMN);
     }
@@ -179,5 +175,7 @@ export class Game {
         }
       }
     }
+
+    return false
   }
 }
