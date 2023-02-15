@@ -74,9 +74,6 @@ while (!winner) {
 
     if (game.currentPlayer.playerType === HUMAN) {
         column = parseInt(await commandLine.question(CHOOSE_COLUMN)) - 1;
-
-        console.log("column", column)
-
         isColumnValid = game.validColumn(column)
 
     } else {
